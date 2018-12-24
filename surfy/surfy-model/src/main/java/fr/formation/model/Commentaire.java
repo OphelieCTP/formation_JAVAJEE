@@ -9,6 +9,7 @@ import javax.validation.constraints.*;
 
 public class Commentaire {
 	@Id
+	@Column(name="COMT_id", nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	

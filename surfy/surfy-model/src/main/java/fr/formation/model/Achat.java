@@ -17,20 +17,13 @@ public class Achat {
 	
 	@ManyToOne
 	@JoinColumn(name="ACH_commande_id")
-	private int idCommande;
+	private Commande commande;
 	
 	@ManyToOne
 	@JoinColumn(name="ACH_produit_id")
-	private int idProduit;
-	
 	private Produit produit;
 	
-	public Produit getProduit() {
-		return produit;
-	}
-	public void setProduit(Produit produit) {
-		this.produit = produit;
-	}
+	
 	@Column(name="ACH_prix_unit", nullable=false)
 	@Positive
 	private Double prixUnit;
@@ -44,7 +37,14 @@ public class Achat {
 	@Lob
 	private String remarque;
 	
-	private Commande commande;
+	public Produit getProduit() {
+		return produit;
+	}
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+		
+	
 	
 	public Commande getCommande() {
 		return commande;
@@ -57,18 +57,6 @@ public class Achat {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getIdCommande() {
-		return idCommande;
-	}
-	public void setIdCommande(int idCommande) {
-		this.idCommande = idCommande;
-	}
-	public int getIdProduit() {
-		return idProduit;
-	}
-	public void setIdProduit(int idProduit) {
-		this.idProduit = idProduit;
 	}
 	public Double getPrixUnit() {
 		return prixUnit;

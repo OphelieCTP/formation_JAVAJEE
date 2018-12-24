@@ -2,6 +2,7 @@ package fr.formation.model;
 
 import java.util.Date;
 import java.util.List;
+import fr.formation.model.*;
 
 import javax.persistence.*;
 
@@ -44,6 +45,9 @@ public class Client extends Personne {
 	@ManyToMany(mappedBy="invite")
 	private List<Evenement> evenement;
 	
+	@OneToMany(mappedBy="client")
+	private List<Commande> commandes;
+	
 	
 	public Date getNaissance() {
 		return naissance;
@@ -80,6 +84,12 @@ public class Client extends Personne {
 	}
 	public void setEvenement(List<Evenement> evenement) {
 		this.evenement = evenement;
+	}
+	public List<Commande> getCommandes() {
+		return commandes;
+	}
+	public void setCommandes(List<Commande> commandes) {
+		this.commandes = commandes;
 	}
 	
 	

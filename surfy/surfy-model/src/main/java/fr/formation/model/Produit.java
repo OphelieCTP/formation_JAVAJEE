@@ -44,7 +44,7 @@ public class Produit {
 	@Lob
 	private String description;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name = "PRO_fournisseur_id")
 	private Fournisseur fournisseur;	
 	

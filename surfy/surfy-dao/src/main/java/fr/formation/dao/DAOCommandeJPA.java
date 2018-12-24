@@ -17,7 +17,7 @@ import javax.persistence.Persistence;
 
 import java.sql.*;
 
-public class DAOCommandeJPA extends IDAOCommande {
+public class DAOCommandeJPA implements IDAOCommande {
 	
 private EntityManager em;
 	
@@ -59,16 +59,15 @@ private EntityManager em;
 		this.delete(myCommande);
 	}
 	
-	public void addAchat(Achat a) {
+	public Achat addAchat(Achat a) {
 		em.getTransaction().begin();
 		if(a.getId()==0) {
-			//
+			em.persist(a); // considere chaque element relié a sa propre table 
 		}
-//		Commande commande = new Commande();
-//		for (Achat a : entity.getProduitsAchetes()) {
-//			em.persist(a);
-//		}
-		//
+		else {
+			a = em.merge(a);
+		}
+		em.getTransaction().commit();
+		return a;
 	}
-
 }

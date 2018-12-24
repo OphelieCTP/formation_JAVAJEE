@@ -1,5 +1,6 @@
 package fr.formation.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,11 +14,12 @@ import javax.validation.constraints.*;
 public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="COMD_id")
 	private int id;
 	
 	@ManyToOne
 	@JoinColumn(name="COMD_client_id")
-	private int idClient;
+	private Client client;
 	
 	@Column(name="COMD_date", length=150, nullable=false)
 	@Temporal(TemporalType.DATE)
@@ -39,7 +41,7 @@ public class Commande {
 	@OneToMany(mappedBy="commande", cascade = CascadeType.PERSIST)
 	private List <Achat> produitsAchetes ;
 	
-	private Client client;
+	
 	
 	
 	public Client getClient() {
@@ -53,12 +55,6 @@ public class Commande {
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public int getIdClient() {
-		return idClient;
-	}
-	public void setIdClient(int idClient) {
-		this.idClient = idClient;
 	}
 	public Date getDate() {
 		return date;
@@ -91,5 +87,18 @@ public class Commande {
 		this.produitsAchetes = produitsAchetes;
 	}
 	
+	public void ajouterProduit(Produit p, int quantite) {
+		if (this.produitsAchetes==null) {
+			this.produitsAchetes=new ArrayList<Achat>();
+		}
+		
+		Achat achat = new Achat();
+		achat.setProduit(p);
+		achat.setQuantite(quantite);
+		achat.setPrixUnit(p.getPrix());
+		
+		this.produitsAchetes.add(achat);
+		achat.setCommande(this);
+	}
 
 }
