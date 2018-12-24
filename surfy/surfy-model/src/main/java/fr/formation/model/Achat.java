@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.model;
 
 import java.util.Date;
 
@@ -9,19 +9,49 @@ import javax.validation.constraints.*;
 @Entity
 @Table(name = "achat")
 
-// table joined : 
-//@PrimaryKeyJoinColumn(name="CLI_ID", referencedColumnName="PER_ID")
-
 public class Achat {
 	@Id
+	@Column(name="ACH_id", nullable=false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="ACH_commande_id")
 	private int idCommande;
+	
+	@ManyToOne
+	@JoinColumn(name="ACH_produit_id")
 	private int idProduit;
+	
+	private Produit produit;
+	
+	public Produit getProduit() {
+		return produit;
+	}
+	public void setProduit(Produit produit) {
+		this.produit = produit;
+	}
+	@Column(name="ACH_prix_unit", nullable=false)
+	@Positive
 	private Double prixUnit;
+	
+	@Column(name="ACH_quantite", nullable=false)
+	@Positive
+	@NotEmpty
 	private int quantite;
+	
+	@Column(name="ACH_remarque", columnDefinition = "TEXT", nullable=false)
+	@Lob
 	private String remarque;
 	
+	private Commande commande;
+	
+	public Commande getCommande() {
+		return commande;
+	}
+	public void setCommande(Commande commande) {
+		this.commande = commande;
+	}
 	public int getId() {
 		return id;
 	}

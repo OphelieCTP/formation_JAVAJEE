@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.model;
 
 
 import javax.persistence.*;

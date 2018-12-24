@@ -4,27 +4,19 @@
   <artifactId>surfy-jpa</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   
+  <properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+  
   
   <dependencies>
-  
-	<dependency>
-    <groupId>fr.formation</groupId>
-    <artifactId>surfy-model</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-	</dependency>
 	
 	<dependency>
     <groupId>fr.formation</groupId>
     <artifactId>surfy-dao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 	</dependency>
-	
-	<dependency>
-  		<groupId>mysql</groupId>
-  		<artifactId>mysql-connector-java</artifactId>
-  		<version>8.0.13</version>
-  		<scope>runtime</scope>
-  	</dependency>
 	
   </dependencies>
   

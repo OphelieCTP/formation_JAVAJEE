@@ -1,6 +1,7 @@
-package fr.formation;
+package fr.formation.model;
 
 import java.util.Date;
+import java.util.List;
 
 
 import javax.persistence.*;
@@ -13,17 +14,40 @@ public class Commande {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
+	@ManyToOne
+	@JoinColumn(name="COMD_client_id")
 	private int idClient;
 	
 	@Column(name="COMD_date", length=150, nullable=false)
 	@Temporal(TemporalType.DATE)
 	@NotEmpty
-	@NotNull
 	private Date date;
+	
+	@Column(name="COMD_prixtotal", nullable=false)
+	@Positive
 	private Double prixTotal;
+	
+	@Column(name="COMD_transporteur", nullable=false)
+	@NotEmpty
+	@Size(max=50)
 	private String transporteur;
+	
+	@Column(name="COMD_etat")
 	private int etat;
 	
+	@OneToMany(mappedBy="commande", cascade = CascadeType.PERSIST)
+	private List <Achat> produitsAchetes ;
+	
+	private Client client;
+	
+	
+	public Client getClient() {
+		return client;
+	}
+	public void setClient(Client client) {
+		this.client = client;
+	}
 	public int getId() {
 		return id;
 	}
@@ -60,8 +84,12 @@ public class Commande {
 	public void setEtat(int etat) {
 		this.etat = etat;
 	}
-	
-	
+	public List<Achat> getProduitsAchetes() {
+		return produitsAchetes;
+	}
+	public void setProduitsAchetes(List<Achat> produitsAchetes) {
+		this.produitsAchetes = produitsAchetes;
+	}
 	
 
 }

@@ -1,7 +1,10 @@
 package fr.formation.dao;
 
 
-import fr.formation.*;
+import fr.formation.dao.*;
+
+import fr.formation.model.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,59 +15,54 @@ import javax.persistence.Persistence;
 import java.sql.*;
 
 public class DAOProduitJPA implements IDAOProduit {
-	
 	private EntityManager em;
 	
-	public EntityManager getEm() {
-		return em;
-	}
-
-	public void setEm(EntityManager em) {
-		this.em = em;
+	
+	public DAOProduitJPA(EntityManagerFactory emf) {
+		this.em = emf.createEntityManager();
 	}
 	
-
-	public void configureEm() {
-		this.em = createEntityManagerFactory().createEntityManager();
-	}
 	
-	public EntityManagerFactory createEntityManagerFactory() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SurfyPU");
-		return emf;
-	}
-
+	@Override
 	public List<Produit> findAll() {
-		List<Produit> myProduits = this.em.createQuery("SELECT p FROM Produit p ", Produit.class).getResultList();
-		return myProduits;
+		return em
+				.createQuery("select p from Produit p", Produit.class)
+				.getResultList();
 	}
 
+	@Override
 	public Produit findById(int id) {
-		List<Produit> allProduits = this.findAll();
-		for (Produit prod : allProduits) {
-			if(prod.getId()==id) {
-				return prod;
-			}
-		}
-		return null;
+		return em.find(Produit.class, id);
 	}
 
+	@Override
 	public Produit save(Produit entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void delete(Produit entity) {
-		this.em.remove(entity);		
-	}
-
-	public void deleteById(int id) {
-		List<Produit> allProduits = this.findAll();
-		for (Produit prod : allProduits) {
-			if(prod.getId()==id) {
-				this.delete(prod);
-			}
+		//On démarre la transaction
+		em.getTransaction().begin();
+		
+		if (entity.getId() == 0) {
+			em.persist(entity);
 		}
+		
+		else {
+			entity = em.merge(entity);
+		}
+		
+		//On commit la transaction
+		em.getTransaction().commit();
+		
+		return entity;
 	}
-	
 
+	@Override
+	public void delete(Produit entity) {
+		em.remove(em.merge(entity));
+	}
+
+	@Override
+	public void deleteById(int id) {
+		Produit myProduit = new Produit();
+		myProduit.setId(id);
+		this.delete(myProduit);
+	}
 }

@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.model;
 
 import java.util.Date;
 import java.util.List;

@@ -1,4 +1,4 @@
-package fr.formation;
+package fr.formation.model;
 
 import java.util.Date;
 import java.util.List;
@@ -19,24 +19,11 @@ import javax.validation.constraints.*;
 	@AttributeOverride(name="telephone", column=@Column(name="FOU_telephone"))
 })
 
-public class Fournisseur extends Personne {
-
-//	@Column(name="FOU_nom", length=150, nullable=false)
-//	@NotEmpty
-//	@Size(max=150)
-//	private String societe;
-	
+public class Fournisseur extends Personne {	
 	
 	@OneToMany(mappedBy="fournisseur")
 	private List<Produit> produits;
 
-
-//	public String getSociete() {
-//		return societe;
-//	}
-//	public void setSociete(String societe) {
-//		this.societe = societe;
-//	}
 	public List<Produit> getProduits() {
 		return produits;
 	}

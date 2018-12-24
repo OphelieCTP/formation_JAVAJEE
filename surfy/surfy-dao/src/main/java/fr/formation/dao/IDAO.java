@@ -1,6 +1,6 @@
-package fr.formation;
+package fr.formation.dao;
 
-// import model.*; 
+//import model.*; 
 import java.util.ArrayList;
 import java.util.List;
 
