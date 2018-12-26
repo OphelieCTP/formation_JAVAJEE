@@ -1,78 +1,54 @@
 package fr.formation;
 
-import fr.formation.dao.*;
-import fr.formation.model.*;
-
-import java.util.*;
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.persistence.criteria.*;
+
+import fr.formation.dao.*;
+import fr.formation.dao.criteria.*;
+import fr.formation.model.*;
+import java.util.List;
 
 public class Principal {
-	
-	public static void main(String[] args) {
-		
+	public static void main(String[] args) { //listing : liste des produits, fournisseurs, clients 
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SurfyPU");
 		EntityManager em = emf.createEntityManager();
-		IDAOProduit daoProduit = new DAOProduitJPA(emf);
-		IDAOCommande daoCommande = new DAOCommandeJPA(emf);
+		CriteriaBuilder myCB = emf.getCriteriaBuilder();
 		
-		List<Produit> myProduits = em.createQuery("SELECT p FROM Produit p ", Produit.class).getResultList();
+		IDAOProduit daoProduit = new DAOProduitCriteria(emf);
+		IDAOClient daoClient = new DAOClientCriteria(emf);
+		IDAOFournisseur daoFournisseur = new DAOFournisseurCriteria(emf);
 		
-		for (Produit p : myProduits) {
+		List<Produit> produits = daoProduit.findAll();
+		System.out.println("Test Criteria : list produits ");
+		for (Produit p : produits) {
 			System.out.println("-------------------");
 			System.out.println(p.getModele()+" : "+p.getDescription());
 		}
 		
-		Produit entity = new Produit();
-		entity.setModele("Une planche");
-		entity.setDescription("un article");
-		entity.setDisponibilite(50);
-		entity.setPrix(155.20d);
+		List<Client> clients = daoClient.findAll();
+		System.out.println("Test Criteria : list clients ");
+		for (Client c : clients) {
+			System.out.println("-------------------");
+			System.out.println(c.getNom()+" : "+c.getPrenom());
+		}
 		
-		em.persist(entity);
+		List<Fournisseur> fournisseurs = daoFournisseur.findAll();
+		System.out.println("Test Criteria : list clients ");
+		for (Fournisseur f : fournisseurs) {
+			System.out.println("-------------------");
+			System.out.println(f.getNom());
+		}
 		
+		List<Produit> produitsclient = daoClient.produitsClient(1);
 		
-		Commande c = new Commande();
-		Client cli = new Client();
-		Produit p1 = new Produit();
-		p1.setModele("Une nouvelle plance");
-		p1.setDescription("un nouvel article");
-		p1.setDisponibilite(60);
-		p1.setPrix(200.20d);
-		Produit p2 = new Produit();
-		p1.setModele("Une nouvelle nouvelle plance");
-		p1.setDescription("un nouvel nouvel article");
-		p1.setDisponibilite(60);
-		p1.setPrix(200.20d);
-		Achat a1 = new Achat();
-		Achat a2 = new Achat();
-
-		// asso 1 achat avec les produit		
-		a1.setProduit(p1);
-		a2.setProduit(p2);
+		// produit client soit part DAO client et join de tt ou part produit et recup tt via achat
 		
-		//assoc Client avec commande
-		c.setClient(cli);
+		//for(Commande c : find..args.)
 		
-		//asso achat avec commande
-		c.ajouterProduit(p1, 5);
-		c.ajouterProduit(p2, 10);
-		
-		// on choisit client et produits
-		cli.setId(1); //client1
-		p1.setId(3); // produit 3
-		p1.setId(1); //produit 1
-		c.setDate(new Date());
-		c.setTransporteur("les Demenageurs Bretons");
-		c.setPrixTotal(200.20d);
-		daoCommande.save(c);
-		
-
 		em.close();
 		emf.close();
 		
-		
-
 	}
+	
 
 }

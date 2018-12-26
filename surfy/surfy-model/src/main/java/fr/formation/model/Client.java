@@ -48,6 +48,16 @@ public class Client extends Personne {
 	@OneToMany(mappedBy="client")
 	private List<Commande> commandes;
 	
+//	@NamedQueries({
+//		@NamedQuery(
+//				name="Client.findProduits",
+//				query="select p from Produit p inner join fetch p.achat a " + 
+//						"inner join fetch a.commande cmd " + 
+//						"inner join fetch cmd.client c " + 
+//						"where c.id = :id")
+//		
+//	})
+	
 	
 	public Date getNaissance() {
 		return naissance;
