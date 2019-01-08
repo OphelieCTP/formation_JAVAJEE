@@ -1,9 +1,11 @@
 package fr.formation.spring.modele;
 
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
-import fr.formation.spring.dao.IInstrument;
-import fr.formation.spring.dao.IMusicien;
+import fr.formation.spring.dao.*;
+import fr.formation.spring.exception.*;
 
 @Component
 public class Pianiste implements IMusicien {
@@ -19,8 +21,16 @@ public class Pianiste implements IMusicien {
 		this.instrument = instrument;
 	}
 	
-	public void jouer() {
-		System.out.println("Le pianiste joue : " + this.instrument);
+	public String jouer() {
+		// Boolean falseNote = new Random.nextBoolean();
+		if(new Random().nextBoolean() == true) {
+			try { throw new FausseNoteException();}
+			finally {
+				//
+			}
+			// catch (FausseNoteException e) { return("Le pianiste joue : une fausse note"); }
+		}
+		return("Le pianiste joue : " + this.instrument);		
 	}
 
 }

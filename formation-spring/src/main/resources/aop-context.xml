@@ -16,6 +16,6 @@
 			</aop:aspect>
 		</aop:config> -->
 		
-		<context:component-scan base-package="fr.formation.spring, fr.formation.spring.dao, fr.formation.spring.modele, fr.formation.aspect" />
+		<context:component-scan base-package="fr.formation.spring, fr.formation.spring.dao, fr.formation.spring.modele, fr.formation.aspect, fr.formation.spring.exception" />
 		
 </beans>

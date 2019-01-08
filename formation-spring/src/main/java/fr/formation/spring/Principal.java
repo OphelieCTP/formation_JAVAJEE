@@ -8,6 +8,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.context.support.*;
 
 import fr.formation.spring.dao.*;
+import fr.formation.spring.exception.FausseNoteException;
 import fr.formation.spring.config.*;
 
 public class Principal {
@@ -117,7 +118,14 @@ public class Principal {
 		AnnotationConfigApplicationContext myContext =  new AnnotationConfigApplicationContext(AppConfigAOP.class); 
 		System.out.println("Qui voulez-vous voir jouer ? [guitariste/pianiste]");
 		IMusicien myMusicien = myContext.getBean(lireChaine(), IMusicien.class);
-		myMusicien.jouer(); 
+		myMusicien.jouer();
+//		try {
+//			System.out.println(myMusicien.jouer());
+//		}
+//		catch (Exception e) {
+//			//
+//		}
+		
 		myContext.close();
 	}
 	
