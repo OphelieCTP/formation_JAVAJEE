@@ -16,9 +16,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/x
 	<class>fr.formation.model.Personne</class>
 	<class>fr.formation.model.Produit</class>
 
-	
-	
-
 		<properties>
 		<!--  Listes des propriétés liées à l’implémentation (Hibernate, OpenJPA, ...) -->
 		<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/surfy?serverTimezone=UTC" />

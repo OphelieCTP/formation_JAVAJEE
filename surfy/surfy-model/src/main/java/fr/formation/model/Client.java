@@ -5,7 +5,6 @@ import java.util.List;
 import fr.formation.model.*;
 
 import javax.persistence.*;
-
 import javax.validation.constraints.*;
 
 //cas du table par class 

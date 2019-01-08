@@ -5,6 +5,8 @@ import java.util.Random.*;
 
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
+
+import fr.formation.annotation.Transactionnal;
 import fr.formation.spring.dao.*;
 import fr.formation.spring.exception.*;
 
@@ -22,6 +24,7 @@ public class Guitariste implements IMusicien {
 		this.instrument = instrument;
 	}
 	
+	@Transactionnal
 	public String jouer() {
 		// Boolean falseNote = new Random.nextBoolean();
 		if(new Random().nextBoolean() == true) {

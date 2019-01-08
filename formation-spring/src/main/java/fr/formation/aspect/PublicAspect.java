@@ -59,5 +59,17 @@ public class PublicAspect {
 		System.out.println("Le public se barre"); 
 	}
 	
+	
+	
+	
+	@Before("@annotation(fr.formation.annotation.Transactionnal)")
+	public void beginTx() {
+		System.out.println("Début de la transaction");
+	}
+	
+	@AfterReturning("@annotation(fr.formation.annotation.Transactionnal)")
+	public void afterTx() {
+		System.out.println("Fin de la transaction");
+	}
 
 }
