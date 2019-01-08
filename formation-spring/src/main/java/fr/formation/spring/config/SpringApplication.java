@@ -6,8 +6,9 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class SpringApplication {
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext myContext = 
-				new AnnotationConfigApplicationContext(AppConfig.class);
-		myContext.getBeanFactory().createBean(Principal.class).run(args);
+				// new AnnotationConfigApplicationContext(AppConfig.class);
+				new AnnotationConfigApplicationContext(AppConfigAOP.class);
+		myContext.getBeanFactory().createBean(Principal.class).main(args);
 		myContext.close();
 		}
 }

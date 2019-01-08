@@ -22,20 +22,20 @@ public class Principal {
 	@Autowired
 	private ApplicationContext myContext;
 	
-	public void run(String[] args) {
-		
-		System.out.println("Qui voulez-vous voir jouer ? [1-pianiste/2-guitariste]");
-		IMusicien myMusicien = null;
-		switch(lireEntier()) {
-		case 1 : //myMusicien = this.musicien1;
-			myMusicien = this.myContext.getBean("pianiste", IMusicien.class);
-			break;
-		case 2 :// myMusicien = this.guitariste;
-			myMusicien = this.myContext.getBean("guitariste", IMusicien.class);
-			break;
-		}
-		myMusicien.jouer();
-		}
+//	public void run(String[] args) {
+//		
+//		System.out.println("Qui voulez-vous voir jouer ? [1-pianiste/2-guitariste]");
+//		IMusicien myMusicien = null;
+//		switch(lireEntier()) {
+//		case 1 : //myMusicien = this.musicien1;
+//			myMusicien = this.myContext.getBean("pianiste", IMusicien.class);
+//			break;
+//		case 2 :// myMusicien = this.guitariste;
+//			myMusicien = this.myContext.getBean("guitariste", IMusicien.class);
+//			break;
+//		}
+//		myMusicien.jouer();
+//		}
 	
 	
 
@@ -93,7 +93,7 @@ public class Principal {
 		}
 	}
 	
-//
+
 //	public static void main(String[] args) {
 //		// IMusicien myGuitariste = new Guitariste();
 //		// IInstrument myGuitare = new Guitare();
@@ -111,4 +111,14 @@ public class Principal {
 //		myMusicien.jouer();
 //		myContext.close();
 //	}
+	
+	public static void main(String[] args) {
+		//ClassPathXmlApplicationContext myContext = new ClassPathXmlApplicationContext("classpath:aop-context.xml");
+		AnnotationConfigApplicationContext myContext =  new AnnotationConfigApplicationContext(AppConfigAOP.class); 
+		System.out.println("Qui voulez-vous voir jouer ? [guitariste/pianiste]");
+		IMusicien myMusicien = myContext.getBean(lireChaine(), IMusicien.class);
+		myMusicien.jouer(); 
+		myContext.close();
+	}
+	
 }
