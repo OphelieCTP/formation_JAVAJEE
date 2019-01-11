@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="asset/css/template.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<title>produit</title>
+</head>
+<body>
+
+<nav> 
+	<ul style="list-style-type:disc">
+		<!-- <li> <a href="accueil.html"> Accueil </a> </li> -->
+		<li> <a href="index.html"> Accueil </a> </li>
+		<li> <a href="produit.html"> Produits </a> </li>
+		<li> <a href="contact.html"> Contact </a> </li>
+	</ul>
+</nav>
+
+<h1> Ajouter produit </h1>
+
+<form method="get" action="">
+
+	<div> 
+		<label> Produit : </label>
+		<input type="text" name="nom" placeholder="Saisir le nom du produit à insérer" required/>
+	</div>
+
+	<div> 
+		<label> Prix : </label> 
+		<input type="text" name="prix" placeholder="Saisir le prix du produit à insérer" required/>
+	</div>
+
+	<div> 
+		<label> Fournisseur : </label>
+		<select name="fournisseur_id" >
+			<option value="1" selected>Les Déménageurs Bretons</option>
+			<option value="2">L'agence Tous Risques</option>
+			<option value="3">K2000</option>
+		</select>
+
+	</div> 
+
+	<div> 
+		<input type="submit" value="Ajouter"/>
+	</div>
+
+</form>
+
+
+</body>
+</html>

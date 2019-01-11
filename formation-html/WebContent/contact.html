@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="asset/css/template.css" />
+<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+<title>contacts</title>
+</head>
+<body>
+	
+	<nav> 
+		<ul style="list-style-type:disc">
+			<!-- <li> <a href="accueil.html"> Accueil </a> </li> -->
+			<li> <a href="index.html"> Accueil </a> </li>
+			<li> <a href="produit.html"> Produits </a> </li>
+			<li> <a href="contact.html"> Contact </a> </li>
+		</ul>
+	</nav>
+	
+	<h1>Une question ?</h1>
+	
+		
+	<form>
+		
+		<div>  
+			<label> Genre : </label> 
+				<input type="radio" name="genre" value="1" id="femelle" />
+				<label for="femelle"> Madame </label>
+				<input type="radio" name="genre" value="2" id="male" />
+				<label for="male"> Monsieur </label>
+				<input type="radio" name="genre" value="0" id="genderless" />
+				<label for="genderless"> Sans genre </label>
+		</div>
+		
+		<div> 
+			<label for="nom"> Nom : </label>
+			<input type="text" name="nom" placeholder="Votre nom" required/>
+		</div>
+		<div> 
+			<label for="prenom"> Prénom : </label> 
+			<input type="text" name="prenom" placeholder="Votre prénom" required/>
+		</div>
+		<div> 
+			<label for="mail">  Mail : </label> 
+			<input type="text" name="mail" placeholder="Votre mail" required/>
+		</div>
+		<div> 
+			<label for="message"> Message :</label> 
+			<div> 
+				<textarea name="message" rows="10" cols="50" required></textarea>
+			</div> 
+		</div>
+		
+		<input type="submit" value="Envoyer"/>
+	
+	</form>
+	
+
+</body>
+</html>
