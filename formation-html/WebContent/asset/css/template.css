@@ -1,7 +1,7 @@
 @charset "ISO-8859-1";
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Reenie Beanie', cursive;
 }
 
 h1 {
@@ -146,3 +146,22 @@ form input[type="radio"] + label {
 	display: inline;
 }
 
+@media all and (max-width: 600px) {
+	h1 {
+		font-size: 20px;
+		color: #000;
+	}
+	
+	h2 {
+		font-size: 14px;
+		color: #000;
+	}
+	
+	h3 {
+		color: #000;
+	}
+	
+	nav {
+		display: none;
+	}
+}
